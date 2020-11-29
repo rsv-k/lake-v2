@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
 const lake = new Discord.Client();
+const config = require('./config.json');
 
 if (process.env.NODE_ENV !== 'production') {
    require('dotenv').config();
@@ -13,8 +14,7 @@ lake.on('message', (msg) => {
    }
 
    const [command, id] = msg.content.split(' ');
-   console.log(command, id);
-   if (command === '--mute') {
+   if (command === `${config.perfix}mute`) {
       msg.reply('pong');
    }
 });
