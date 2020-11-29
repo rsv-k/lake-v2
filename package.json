@@ -11,7 +11,8 @@
    },
    "scripts": {
       "test": "echo \"Error: no test specified\" && exit 1",
-      "lake": "nodemon lake.js"
+      "lake": "nodemon lake.js",
+      "start": "node lake.js"
    },
    "keywords": [],
    "author": "",
