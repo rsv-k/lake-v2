@@ -1,0 +1,19 @@
+{
+   "name": "lake",
+   "version": "1.0.0",
+   "description": "",
+   "main": "index.js",
+   "dependencies": {
+      "discord.js": "^12.5.1"
+   },
+   "devDependencies": {
+      "dotenv": "^8.2.0"
+   },
+   "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "lake": "nodemon lake.js"
+   },
+   "keywords": [],
+   "author": "",
+   "license": "ISC"
+}
