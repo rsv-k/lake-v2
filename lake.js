@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const lake = new Discord.Client();
-const config = require('./config.json');
+const eventHandlers = require('./eventHandlers');
 
 if (process.env.NODE_ENV !== 'production') {
    require('dotenv').config();
@@ -8,7 +8,7 @@ if (process.env.NODE_ENV !== 'production') {
    require('./server');
 }
 
-lake.on('ready', () => console.log(`Logged in as ${lake.user.tag}!`));
+lake.on('ready', eventHandlers.ready);
 
 // lake.on('message', (msg) => {
 //    if (msg.author.id !== '481189853241802792') {
@@ -21,14 +21,6 @@ lake.on('ready', () => console.log(`Logged in as ${lake.user.tag}!`));
 //    }
 // });
 
-lake.on('messageReactionAdd', async (reaction, user) => {
-   if (reaction.message.author.id !== '481189853241802792') {
-      return;
-   }
-
-   if (config.forbiddenIds.includes(user.id)) {
-      reaction.users.remove(user);
-   }
-});
+lake.on('messageReactionAdd', eventHandlers.messageReactionAdd);
 
 lake.login(process.env.TOKEN);
