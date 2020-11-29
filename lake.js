@@ -1,12 +1,7 @@
+require('./server');
 const Discord = require('discord.js');
 const lake = new Discord.Client();
 const eventHandlers = require('./eventHandlers');
-
-if (process.env.NODE_ENV !== 'production') {
-   require('dotenv').config();
-} else {
-   require('./server');
-}
 
 lake.on('ready', eventHandlers.ready);
 
