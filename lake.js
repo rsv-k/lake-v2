@@ -2,6 +2,15 @@ const Discord = require('discord.js');
 const lake = new Discord.Client();
 const config = require('./config.json');
 
+const express = require('express');
+const app = express();
+app.get('/', (req, res) => {
+   console.log(Date.now() + ' Ping Recieved');
+   res.sendStatus(200);
+});
+
+app.listen(process.env.PORT);
+
 if (process.env.NODE_ENV !== 'production') {
    require('dotenv').config();
 }
