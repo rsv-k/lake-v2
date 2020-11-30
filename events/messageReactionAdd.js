@@ -1,10 +1,14 @@
-const config = require('../config.json');
+const fs = require('fs').promises;
 
-module.exports = (reaction, user) => {
+module.exports = async (reaction, user) => {
    console.log(
       'Message: ' + reaction.message.author.username,
       'User:' + user.username
    );
+
+   const data = await fs.readFile('config.json');
+   const config = JSON.parse(data);
+
    if (reaction.message.author.id !== config.ownerId) {
       return;
    }
