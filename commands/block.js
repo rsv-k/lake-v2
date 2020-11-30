@@ -1,30 +1,21 @@
-const fs = require('fs');
+const fs = require('fs').promises;
 
-module.exports = (msg, ids) => {
+module.exports = async (msg, ids) => {
    const id = ids[0];
    if (!id || id.length !== '481189853241802792'.length) {
       return msg.reply('Invalid id');
    }
 
-   fs.readFile('config.json', (err, data) => {
-      if (err) {
-         throw err;
-      }
+   const data = await fs.readFile('config.json');
+   let config = JSON.parse(data);
 
-      let config = JSON.parse(data);
-      if (config.forbiddenIds.includes(id)) {
-         return msg.reply('Such id has already been blocked');
-      }
+   if (config.forbiddenIds.includes(id)) {
+      return msg.reply('Such id has already been blocked');
+   }
 
-      config.forbiddenIds.push(id);
+   config.forbiddenIds.push(id);
+   config = JSON.stringify(config, null, 3);
 
-      config = JSON.stringify(config, null, 3);
-      fs.writeFile('config.json', config, (err) => {
-         if (err) {
-            throw err;
-         }
-
-         msg.reply('Id has been blocked');
-      });
-   });
+   await fs.writeFile('config.json', config);
+   msg.reply('Id has been blocked');
 };
