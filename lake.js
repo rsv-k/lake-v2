@@ -1,7 +1,7 @@
 require('./server');
 const Discord = require('discord.js');
 const lake = new Discord.Client();
-const eventHandlers = require('./eventHandlers');
+const eventHandlers = require('./events/eventHandlers');
 
 lake.on('ready', eventHandlers.ready);
 

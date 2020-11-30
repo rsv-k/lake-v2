@@ -1,4 +1,4 @@
-const commandsHandler = require('../commandsHandler');
+const commandsHandler = require('../commands/commandsHandler');
 const config = require('../config.json');
 
 module.exports = (msg) => {
